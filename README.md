@@ -29,6 +29,7 @@
 Відкрийте файл WemosD1MiniHTTPRequest.ino в Arduino IDE.
 
 Введіть свої дані WiFi і канальний ключ у відповідні поля:
+
 const char* ssid = "your_SSID";
 const char* password = "your_PASSWORD";
 const char* channelKey = "ВАШКЛЮЧ";
