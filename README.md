@@ -1,4 +1,3 @@
-
 # Wemos D1 Mini HTTP Request
 
 Цей проект використовує Wemos D1 Mini для періодичного виконання HTTP-запитів кожні 4 хвилини.
@@ -24,19 +23,24 @@
      - `ESP8266HTTPClient`
      - `NTPClient`
      - `WiFi`
+     - `ESP8266WebServer`
+     - `EEPROM`
 
 ## Використання
-Відкрийте файл WemosD1MiniHTTPRequest.ino в Arduino IDE.
 
-Введіть свої дані WiFi і канальний ключ у відповідні поля:
+1.Відкрийте файл WemosD1MiniHTTPRequest.ino в Arduino IDE.Завантажте скетч на ваш Wemos D1 Mini.
 
-const char* ssid = "your_SSID";
-const char* password = "your_PASSWORD";
-const char* channelKey = "ВАШКЛЮЧ";
+2. Підключіться до точки доступу "Wemos_Config" через Wi-Fi.
 
-Завантажте скетч на ваш Wemos D1 Mini.Підключіть серійний монітор, щоб побачити результати.
+3. Відкрийте браузер і перейдіть на адресу 192.168.4.1.
 
+4. Введіть ваші дані (ssid, password і channelKey) і натисніть "Save".
 
-1. Клонувати цей репозиторій:
+5. Пристрій автоматично перезавантажиться і підключиться до Wi-Fi з введеними налаштуваннями.
+
+Підключіть серійний монітор, щоб побачити результати і перевірити, чи правильно виконується HTTP-запит
+
+ 
+ Клонувати цей репозиторій:
    ```sh
    git clone https://github.com/yourusername/Wemos-D1-Mini-HTTP-Request.git
