@@ -1,3 +1,4 @@
+
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <Ticker.h>
@@ -19,7 +20,7 @@ public:
         WiFi.begin(_ssid, _password);
         while (WiFi.status() != WL_CONNECTED) {
             delay(1000);
-            Serial.println("Підключення до WiFi...");
+           // Serial.println("Підключення до WiFi...");
         }
         Serial.println("Підключено до WiFi");
         Serial.println("IP адреса: ");
@@ -111,24 +112,27 @@ void handleCommand(String command) {
 }
 
 void setSSID(String ssid) {
-    ssid.toCharArray(ssid, 32);
-    EEPROM.put(0, ssid);
+    char ssidBuffer[32];
+    ssid.toCharArray(ssidBuffer, 32);
+    EEPROM.put(0, ssidBuffer);
     EEPROM.commit();
-    wifiManager.setSSID(ssid.c_str());
+    wifiManager.setSSID(ssidBuffer);
     Serial.println("SSID збережено: " + ssid);
 }
 
 void setPassword(String password) {
-    password.toCharArray(password, 64);
-    EEPROM.put(32, password);
+    char passwordBuffer[64];
+    password.toCharArray(passwordBuffer, 64);
+    EEPROM.put(32, passwordBuffer);
     EEPROM.commit();
-    wifiManager.setPassword(password.c_str());
+    wifiManager.setPassword(passwordBuffer);
     Serial.println("Пароль збережено");
 }
 
 void setChannelKey(String channelKey) {
-    channelKey.toCharArray(channelKey, 64);
-    EEPROM.put(96, channelKey);
+    char channelKeyBuffer[64];
+    channelKey.toCharArray(channelKeyBuffer, 64);
+    EEPROM.put(96, channelKeyBuffer);
     EEPROM.commit();
     httpClient.setChannelKey(channelKey);
     Serial.println("Канальний ключ збережено: " + channelKey);
