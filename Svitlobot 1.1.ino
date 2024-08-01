@@ -53,8 +53,13 @@ private:
     String _url;
 };
 
-WiFiManager wifiManager("your_ssid", "your_password");
-HTTPClientWrapper httpClient("https://api.svitlobot.in.ua/channelPing?channel_key=your_channel_key");
+// Введіть назву мережі WiFi, пароль і ключ тут
+const char* ssid = "your_ssid";
+const char* password = "your_password";
+const String channelKey = "your_channel_key";
+
+WiFiManager wifiManager(ssid, password);
+HTTPClientWrapper httpClient("https://api.svitlobot.in.ua/channelPing?channel_key=" + channelKey);
 
 Ticker wifiCheckTimer;
 Ticker httpRequestTimer;
