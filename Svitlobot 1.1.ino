@@ -1,6 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <Ticker.h>
+#include <ESP8266Ping.h>
 
 // Клас для керування підключенням до WiFi
 class WiFiManager {
@@ -85,7 +86,17 @@ void checkWiFi() {
     if (!wifiManager.isConnected()) {
         displayMessage("Втрачено з'єднання з WiFi, перепідключення...");
         wifiManager.connect();
+    } else if (!checkInternetConnection()) {
+        displayMessage("Інтернет недоступний, перепідключення...");
+        WiFi.disconnect();
+        wifiManager.connect();
     }
+}
+
+// Функція для перевірки доступності інтернету за допомогою пінгування
+bool checkInternetConnection() {
+    const IPAddress remoteIp(8, 8, 8, 8); // Google DNS сервер
+    return Ping.ping(remoteIp);
 }
 
 // Функція для виконання HTTP GET-запиту до вказаного URL, якщо ESP8266 підключений до WiFi
